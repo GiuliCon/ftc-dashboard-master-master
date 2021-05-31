@@ -82,6 +82,20 @@ public class Encoder {
         return currentPosition;
     }
 
+    public int resetPosition() {
+        int multiplier = direction.getMultiplier();
+        int currentPosition = motor.getCurrentPosition() * multiplier;
+        if (currentPosition != lastPosition) {
+            double currentTime = clock.seconds();
+            double dt = currentTime - lastUpdateTime;
+            velocityEstimate = (currentPosition - lastPosition) / dt;
+            lastPosition = currentPosition;
+            lastUpdateTime = currentTime;
+        }
+        currentPosition = 0;
+        return currentPosition;
+    }
+
     public double getRawVelocity() {
         int multiplier = direction.getMultiplier();
         return motor.getVelocity() * multiplier;
