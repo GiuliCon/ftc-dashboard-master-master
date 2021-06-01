@@ -9,10 +9,10 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Autonomous(name = "CazA")
 public class cazulA extends LinearOpMode {
-private SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+//private SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
     @Override
     public void runOpMode() throws InterruptedException {
-        //SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         Pose2d startpose = new Pose2d(-58, -50, 0);
 
         waitForStart();
@@ -63,7 +63,7 @@ private SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
 
     public void SingleFire() {
-        //SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         drive.launchMotor.setPower(1);
         sleep(1000);
         drive.launchServo.setPosition(-1);
