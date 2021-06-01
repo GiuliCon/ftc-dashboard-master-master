@@ -96,7 +96,7 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private LinkedList<Pose2d> poseHistory;
 
-    public DcMotorEx leftFront, leftRear, rightRear, rightFront, intakeMotor, launchMotor;
+    public DcMotorEx leftFront, leftRear, rightRear, rightFront, intakeMotor, launchMotor, parallelEncoder, perpendicularEncoder;
 
     private List<DcMotorEx> motors;
     private BNO055IMU imu;
@@ -156,14 +156,17 @@ public class SampleMecanumDrive extends MecanumDrive {
         intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
         launchServo = hardwareMap.get(Servo.class, "launchServo");
 
+        parallelEncoder = hardwareMap.get(DcMotorEx.class, "parallelEncoder");
+        perpendicularEncoder = hardwareMap.get(DcMotorEx.class, "perpendicularEncoder");
+
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        launchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        launchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront, launchMotor, intakeMotor);
+        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront, launchMotor, intakeMotor, parallelEncoder, perpendicularEncoder);
 
         for (DcMotorEx motor : motors) {
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();

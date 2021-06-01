@@ -24,6 +24,8 @@ public class testEncidereRev extends LinearOpMode {
         Encoder parallelEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "parallelEncoder"));
         Encoder perpendicularEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "perpendicularEncoder"));
 
+        drive.parallelEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        drive.perpendicularEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         drive.setPoseEstimate(startpose);
 
         Trajectory traj1 = drive.trajectoryBuilder(startpose)
@@ -31,8 +33,8 @@ public class testEncidereRev extends LinearOpMode {
                 .build();
         waitForStart();
 
-        parallelEncoder.resetPosition();
-        perpendicularEncoder.resetPosition();
+//        parallelEncoder.resetPosition();
+//        perpendicularEncoder.resetPosition();
 
         telemetry.addData("parallel Encoder", parallelEncoder.getCurrentPosition());
         telemetry.addData("perpendicular Encoder", perpendicularEncoder.getCurrentPosition());
